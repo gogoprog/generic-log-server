@@ -10,7 +10,7 @@ class Log
     public static function add($session_id, $level, $content)
     {
         $query = "INSERT INTO log(session_id, content, level) VALUES(" . $session_id . ", " . $level . ", '" . $content . "')";
-        $mysqli->query($query);
+        Database::query($query);
     }
 
 }

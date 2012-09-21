@@ -3,6 +3,7 @@
 ## Description
 generic-log-server is a generic log server using php, javascript and sql.
 The database stores logs per sessions. A session is associated to an application and a version.
+Clients can communicate with the server using http requests and json.
 The front-end displays and colorizes the logs.
 
 ## Requirements

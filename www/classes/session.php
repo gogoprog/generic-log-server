@@ -1,6 +1,6 @@
 <?php
 
-require('application.php');
+require_once('application.php');
 
 class Session
 {
