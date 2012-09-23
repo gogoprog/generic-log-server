@@ -4,9 +4,19 @@ require_once("../classes/application.php");
 require_once("../classes/session.php");
 require_once("../classes/util.php");
 
-$array = array();
-$array["Hello"] = "world";
+Database::initialize();
 
-Util::writeJson($array);
+$json = Util::decodeJson();
+
+$appName = $json["name"];
+$version = $json["version"];
+$user = $json["user"];
+
+$session = Session::create($appName, $version, $user);
+
+$response = array();
+$response["session_id"] = $session->id;
+
+Util::writeJson($response);
 
 ?>

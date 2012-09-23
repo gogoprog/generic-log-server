@@ -1,6 +1,6 @@
 <?php
 
-require_once('../config/config.php');
+include('../config/config.php');
 
 class Database
 {
@@ -27,6 +27,11 @@ class Database
     public static function query($query)
     {
         return self::$mysqli->query($query);
+    }
+    
+    public static function getLastInsertedId()
+    {
+        self::$mysqli->insert_id;
     }
 
 }

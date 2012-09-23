@@ -1,5 +1,7 @@
 <?php
 
+require_once("database.php");
+
 class Log
 {
     public $id;
