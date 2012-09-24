@@ -18,7 +18,7 @@ class Session
             $app = Application::create($app_name, $app_version);
         }
 
-        $query = "INSERT INTO session(app_id, start_date, user) VALUES(" . $app->id . ", CURDATE(), '" . $user . "')";
+        $query = "INSERT INTO session(app_id, start_date, user) VALUES(" . $app->id . ", NOW(), '" . $user . "')";
         Database::query($query);
 
         $session->id = Database::getLastInsertedId();

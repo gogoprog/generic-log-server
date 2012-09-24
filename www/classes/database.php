@@ -31,7 +31,7 @@ class Database
     
     public static function getLastInsertedId()
     {
-        self::$mysqli->insert_id;
+        return self::$mysqli->insert_id;
     }
 
 }
