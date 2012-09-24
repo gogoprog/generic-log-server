@@ -10,7 +10,7 @@ CREATE TABLE application (
 CREATE TABLE session (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     app_id INT NOT NULL,
-    start_date datetime,
+    start_date DATETIME,
     user VARCHAR(128)
     );
 

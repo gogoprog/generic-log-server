@@ -1,33 +1,58 @@
 local Address = "http://localhost/log/"
 local Url = Address .. "actions/"
-local Command = "curl -s " .. Url
+local CommandPrefix = "curl -s "
+
+local TestCount = 0
+local TestSucceededCount = 0
+
+local JSON = (loadfile "JSON.lua")()
 
 function Query(action, parameters)
-    local command = Command .. action .. ".php"
+    local command = CommandPrefix .. "\"" .. Url .. action .. ".php\""
     
     if parameters then
-        command = command .. "?" .. parameters
+        command = command .. " -G -d json=\"[" .. string.gsub(JSON:encode(parameters), '"', "\\\"") .. "]\""
     end
-    
-    print("Command: \"" .. command .. "\"")
+
+    print("Command: " .. command )
     
     local stream = io.popen (command)
 
     for line in stream:lines() do
         print("Response: " .. line)
-        return line;
+        return JSON:decode(line);
     end
 end
 
 function TestQuery(action, parameters, expected)
-    local response = Query(action, parameters)
+    local succeeded, response = pcall(Query, action, parameters)
+    local expected_differs = false
     
-    if response ~= expected then
-        print("Expected: " .. expected)
-        print("TEST FAILED ! <" .. action .. ">")
-    else
-        print("Test <" .. action .. "> passed.")
+    TestCount = TestCount + 1
+
+    if succeeded then
+        for k,v in ipairs(response) do
+            if expected[k] ~= v then
+                expected_differs = true
+                break
+            end
+        end
+        
+        if expected_differs then
+            print("Expected: " .. expected)
+            print("TEST FAILED ! <" .. action .. ">")
+        else
+            print("Test <" .. action .. "> passed.")
+            
+            TestSucceededCount = TestSucceededCount + 1
+        end
+
+        return response
     end
-    
-    return response
+
+end
+
+
+function ShowTestResults()
+    print("\nTests succeeded : " .. TestSucceededCount .. " / " .. TestCount)
 end
