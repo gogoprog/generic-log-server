@@ -44,7 +44,7 @@ function fillSelectWithSessions(element,app_id)
         for (var i=0; i<sessions.length; ++i)
         {
             var session = sessions[i];
-            content += "<option value=\"" + session["id"] + "\">" + session["start_date"] + "</option>";
+            content += "<option value=\"" + session["id"] + "\">" + session["start_date"] + " | " + session["user"] + "</option>";
         }
 
         element.html(content);
