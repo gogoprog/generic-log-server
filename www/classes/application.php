@@ -42,6 +42,18 @@ class Application
 
         return null;
     }
+    
+    public static function getAll()
+    {
+        $array = array();
+        
+        $query = "SELECT * FROM application";
+        $result = Database::query($query);
+        
+        $array = $result->fetch_all(MYSQLI_ASSOC);
+        
+        return $array;
+    }
 }
 
 ?>
