@@ -15,6 +15,17 @@ class Log
         Database::query($query);
     }
 
+    public static function getAllFromSessionId($session_id)
+    {
+        $array = array();
+        
+        $query = "SELECT level, content FROM log WHERE session_id = " . $session_id . " ORDER BY id";
+        $result = Database::query($query);
+        
+        $array = $result->fetch_all(MYSQLI_ASSOC);
+        
+        return $array;
+    }
 }
 
 ?>

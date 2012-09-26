@@ -27,6 +27,18 @@ class Session
         return $session;
     }
 
+    public static function getAllFromApplicationId($app_id)
+    {
+        $array = array();
+        
+        $query = "SELECT * FROM session WHERE app_id = " . $app_id . " ORDER BY id";
+        $result = Database::query($query);
+        
+        $array = $result->fetch_all(MYSQLI_ASSOC);
+        
+        return $array;
+    }
+
 }
 
 ?>
