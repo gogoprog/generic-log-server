@@ -28,12 +28,16 @@ class Database
     {
         return self::$mysqli->query($query);
     }
-    
+
     public static function getLastInsertedId()
     {
         return self::$mysqli->insert_id;
     }
 
+    public static function getLastError()
+    {
+        return self::$mysqli->error;
+    }
 }
 
 ?>

@@ -7,7 +7,7 @@ class Util
         if(isset($_REQUEST["json"]))
         {
             $json = $_REQUEST["json"];
-            $json = json_decode($json, true)[0];
+            $json = json_decode($json, true);
             return $json;
         }
         else
@@ -18,7 +18,7 @@ class Util
     
     public static function writeJson($array)
     {
-        print(json_encode($array));
+        print(json_encode($array, JSON_NUMERIC_CHECK));
     }
 }
 

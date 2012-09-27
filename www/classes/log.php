@@ -12,7 +12,7 @@ class Log
     public static function add($session_id, $level, $content)
     {
         $query = "INSERT INTO log(session_id, level, content ) VALUES(" . $session_id . ", " . $level . ", '" . $content . "')";
-        Database::query($query);
+        return Database::query($query);
     }
 
     public static function getAllFromSessionId($session_id)

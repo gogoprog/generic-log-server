@@ -11,10 +11,17 @@ $sessionId = $json["session_id"];
 $level = $json["level"];
 $content = $json["content"];
 
-Log::add($sessionId, $level, $content);
-
 $response = array();
-$response["error"] = "none";
+
+if(Log::add($sessionId, $level, $content))
+{
+    $response["error"] = 0;
+}
+else
+{
+    $response["error"] = 1;
+    $response["error_message"] = Database::getLastError();
+}
 
 Util::writeJson($response);
 

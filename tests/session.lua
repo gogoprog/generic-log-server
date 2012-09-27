@@ -16,7 +16,7 @@ local version = math.random(1,1000)
 local user = "dummyuser" .. math.random(1,100)
 
 function LogRandomLine()
-    TestQuery("log", { session_id=session_id, content=loglines[math.random(1,#loglines - 1)], level=math.random(0,5) }, { error = "none" })
+    TestQuery("log", { session_id=session_id, content=loglines[math.random(1,#loglines - 1)], level=math.random(0,5) }, { error = 0 })
 end
 
 session_id = Query("start", { name="dummy", version=version, user=user })[ "session_id" ]

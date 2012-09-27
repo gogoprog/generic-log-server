@@ -11,7 +11,7 @@ function Query(action, parameters)
     local command = CommandPrefix .. "\"" .. Url .. action .. ".php\""
     
     if parameters then
-        command = command .. " -G -d json=\"[" .. string.gsub(JSON:encode(parameters), '"', "\\\"") .. "]\""
+        command = command .. " -G -d json=\"" .. string.gsub(JSON:encode(parameters), '"', "\\\"") .. "\""
     end
 
     print("Command: " .. command )

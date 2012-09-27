@@ -2,11 +2,11 @@ var actionPath = "../actions/";
 
 var loglevelcolors = [
     "black",
+    "black",
+    "black",
+    "black",
     "blue",
-    "green",
-    "red",
-    "brown",
-    "yellow"
+    "red"
     ];
 
 function request(actionName, func, parameters)
@@ -17,7 +17,7 @@ function request(actionName, func, parameters)
     
     if(parameters)
     {
-        url += "?json=[" + JSON.stringify(parameters) + "]";
+        url += "?json=" + JSON.stringify(parameters);
     }
 
     $.get(url,func);
@@ -29,6 +29,7 @@ function fillSelectWithApplications(element)
         var content = "";
         var apps = eval( '(' + data + ')');
 
+        content += "<option>Select application...</option>";
         for (var i=0; i<apps.length; ++i)
         {
             var app = apps[i];
@@ -75,7 +76,7 @@ function fillDivWithLogs(element,session_id)
         for (var i=0; i<logs.length; ++i)
         {
             var log = logs[i];
-            content += "<span style=\"color:" + loglevelcolors[log["level"]] + ";\">" + log["content"] + "</span><br/>";
+            content += "<span style=\"color:" + loglevelcolors[log["level"]] + ";\">" + log["content"] + "</span>";
         }
 
         element.html(content);
