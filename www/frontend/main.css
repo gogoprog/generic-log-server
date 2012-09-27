@@ -20,6 +20,7 @@ body {
 
 #div_logs {
 	min-height:480px;
+	height:500px;
 	width:600px;
 	overflow:auto;
 	border-color:black;
@@ -56,8 +57,9 @@ table {
 	position:relative;
 	margin-right:auto;
 	margin-left:auto;
-	font-size:20px;
-	color:white;
+	font-size:21px;
+	color:#eeeeee;
 	width:850px;
 	top:8px;
+	font-weight:bold;
 }

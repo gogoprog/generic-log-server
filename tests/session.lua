@@ -21,7 +21,7 @@ end
 
 session_id = Query("start", { name="dummy", version=version, user=user })[ "session_id" ]
 
-for i = 1, 15 do
+for i = 1, 33 do
     LogRandomLine()
 end
 
