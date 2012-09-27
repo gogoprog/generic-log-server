@@ -1,5 +1,14 @@
 var actionPath = "../actions/";
 
+var loglevelcolors = [
+    "black",
+    "blue",
+    "green",
+    "red",
+    "brown",
+    "yellow"
+    ];
+
 function request(actionName, func, parameters)
 {
     var url;
@@ -23,7 +32,7 @@ function fillSelectWithApplications(element)
         for (var i=0; i<apps.length; ++i)
         {
             var app = apps[i];
-            content += "<option value=\"" + app["id"] + "\">" + app["name"] + "</option>";
+            content += "<option value=\"" + app["id"] + "\">" + app["name"] + " (" + app["version"] + ")</option>";
 
         }
 
@@ -66,7 +75,7 @@ function fillDivWithLogs(element,session_id)
         for (var i=0; i<logs.length; ++i)
         {
             var log = logs[i];
-            content += log["content"];
+            content += "<span style=\"color:" + loglevelcolors[log["level"]] + ";\">" + log["content"] + "</span><br/>";
         }
 
         element.html(content);
